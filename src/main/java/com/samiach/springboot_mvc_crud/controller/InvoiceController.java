@@ -20,12 +20,12 @@ public class InvoiceController {
 
     @GetMapping("/")
     public String showHomePage() {
-        return "homePage";
+        return "home_page";
     }
 
     @GetMapping("/register")
     public String showRegistration() {
-        return "registerInvoicePage";
+        return "register_invoice_page";
     }
 
     @PostMapping("/save")
@@ -34,7 +34,7 @@ public class InvoiceController {
         Long id = service.saveInvice(invoice).getId();
         String message = "Record with id : '" + id + "' is saved successfully !";
         model.addAttribute("message", message);
-        return "registerInvoicePage";
+        return "register_invoice_page";
     }
 
     @GetMapping("/getAllInvoices")
@@ -42,7 +42,7 @@ public class InvoiceController {
         List<Invoice> invoices = service.getAllInvoices();
         model.addAttribute("list", invoices);
         model.addAttribute("message", message);
-        return "allInvoicesPage";
+        return "all_invoices_page";
     }
 
     @GetMapping("/edit")
@@ -52,7 +52,7 @@ public class InvoiceController {
         try {
             Invoice invoice = service.getInvoiceById(id);
             model.addAttribute("invoice", invoice);
-            page = "editInvoicePage";
+            page = "edit_invoices_page";
         } catch (InvoiceNotFoundException e) {
             e.printStackTrace();
             attributes.addAttribute("message", e.getMessage());
